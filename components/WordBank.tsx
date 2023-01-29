@@ -4,6 +4,20 @@ import { useState } from "react";
 
 import Character from "@/data/characters";
 
+const CharacterCard = ({
+    char,
+    addChar,
+}: {
+    char: Character;
+    addChar: (char: string) => void;
+}) => {
+    return (
+        <div className="charactercard" onClick={() => addChar(char.glyph)}>
+            <Image src={`/c/${char.glyph}.png`} fill alt={char.glyph} />
+        </div>
+    );
+};
+
 const WordBank = ({
     characters,
     addChar,
@@ -16,28 +30,12 @@ const WordBank = ({
     });
     const [query, setQuery] = useState("");
 
-    const NullResults = () => (
-        <>
-            <p>Showing all characters</p>
-            <div id="searchresults">
-                {characters.map((char, i) => (
-                    <CharacterCard key={i} char={char} />
-                ))}
-            </div>
-        </>
-    );
-
-    const CharacterCard = ({ char }: { char: Character }) => {
-        return (
-            <div className="charactercard" onClick={() => addChar(char.glyph)}>
-                <Image src={`/c/${char.glyph}.png`} fill alt={char.glyph} />
-            </div>
-        );
-    };
-
     return (
         <aside id="wordbank">
-            <h2>search characters</h2>
+            <h2>word bank</h2>
+            <p>
+                not sure what to write? browse and search supported characters
+            </p>
             <input
                 id="search"
                 type="text"
@@ -50,13 +48,25 @@ const WordBank = ({
                 <div id="searchresults">
                     {fuse.search(query).map((result) => (
                         <CharacterCard
+                            addChar={addChar}
                             key={result.refIndex}
                             char={result.item}
                         />
                     ))}
                 </div>
             ) : (
-                <NullResults />
+                <>
+                    <p>showing all characters</p>
+                    <div id="searchresults">
+                        {characters.map((char, i) => (
+                            <CharacterCard
+                                key={i}
+                                char={char}
+                                addChar={addChar}
+                            />
+                        ))}
+                    </div>
+                </>
             )}
         </aside>
     );

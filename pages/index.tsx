@@ -23,6 +23,7 @@ export default function Home() {
     const addChar = (char: string) => {
         setText(text + char);
     };
+
     return (
         <>
             <Head>
@@ -39,15 +40,14 @@ export default function Home() {
             </Head>
             <main>
                 <WordBank characters={characters} addChar={addChar} />
-
                 <div id="inputanddisplay">
-                    <div id="input">
+                    <section id="input">
+                        <h2>input</h2>
                         <textarea
                             value={text}
                             onChange={(e) => setText(e.target.value)}
-                        ></textarea>
-                    </div>
-
+                        />
+                    </section>
                     <Display text={text} charSet={charSet} />
                 </div>
             </main>

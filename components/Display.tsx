@@ -15,29 +15,9 @@ const Display = ({ text, charSet }: { text: string; charSet: Set<string> }) => {
     const [isVertical, setIsVertical] = useState(false);
     const [isDarkBg, setIsDarkBg] = useState(false);
 
-    const Line = ({ line }: { line: string[] }) => {
-        return (
-            <div className={`line ${isVertical ? "verticalline" : ""}`}>
-                {line.map((char, i) => (
-                    <Char key={i} char={char} />
-                ))}
-            </div>
-        );
-    };
-
-    const Char = ({ char }: { char: string }) => {
-        if (charSet.has(char)) {
-            return (
-                <div className={"char " + (isDarkBg ? "darkbgchar" : "")}>
-                    <Image src={`/c/${char}.png`} alt={char} fill />
-                </div>
-            );
-        }
-        return <div className="char">?</div>;
-    };
-
     return (
-        <>
+        <section>
+            <h2>display</h2>
             <div id="controls">
                 <span>horizontal + left-to-right</span>
                 <label className="switch">
@@ -72,10 +52,24 @@ const Display = ({ text, charSet }: { text: string; charSet: Set<string> }) => {
                 }
             >
                 {tokens.map((line, i) => (
-                    <Line key={i} line={line} />
+                    <div
+                        key={i}
+                        className={`line ${isVertical ? "verticalline" : ""}`}
+                    >
+                        {line.map((char, i) => (
+                            <div
+                                key={i}
+                                className={
+                                    "char " + (isDarkBg ? "darkbgchar" : "")
+                                }
+                            >
+                                <Image src={`/c/${char}.png`} alt={char} fill />
+                            </div>
+                        ))}
+                    </div>
                 ))}
             </div>
-        </>
+        </section>
     );
 };
 
