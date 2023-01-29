@@ -45,7 +45,8 @@ export default function Home() {
                         <h2>input</h2>
                         <p>
                             write chinese text here to see it displayed below in
-                            my calligraphy, ransom note-style
+                            my calligraphy, ransom note-style. try adding line
+                            breaks too!
                         </p>
                         <textarea
                             value={text}

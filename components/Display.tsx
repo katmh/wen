@@ -16,7 +16,7 @@ const Display = ({ text, charSet }: { text: string; charSet: Set<string> }) => {
 
     const [isVertical, setIsVertical] = useState(false);
     const [isDarkBg, setIsDarkBg] = useState(false);
-    const [charScale, setCharScale] = useState(1);
+    const [charScale, setCharScale] = useState(30);
 
     return (
         <section>
@@ -39,8 +39,8 @@ const Display = ({ text, charSet }: { text: string; charSet: Set<string> }) => {
                 <Control
                     leftLabel="text size"
                     inputType="range"
-                    min={0.75}
-                    max={3}
+                    min={20}
+                    max={100}
                     state={charScale}
                     onChange={setCharScale}
                 />
@@ -48,24 +48,30 @@ const Display = ({ text, charSet }: { text: string; charSet: Set<string> }) => {
             <div
                 id="display"
                 className={
-                    (isVertical ? "verticaldisplay " : "") +
-                    (isDarkBg ? "darkbgdisplay " : "")
+                    (isVertical ? "displayvertical " : "displayhorizontal ") +
+                    (isDarkBg ? "displaydarkbg " : "displaylightbg ")
                 }
             >
                 {tokens.map((line, i) => (
                     <div
                         key={i}
-                        className={`line ${isVertical ? "verticalline" : ""}`}
+                        className={
+                            "line " +
+                            (isVertical ? "linevertical " : "linehorizontal ")
+                        }
+                        style={{
+                            [isVertical ? "width" : "height"]: `${charScale}px`,
+                        }}
                     >
                         {line.map((char, i) => (
                             <div
                                 key={i}
                                 className={
-                                    "char " + (isDarkBg ? "darkbgchar" : "")
+                                    "char " +
+                                    (isDarkBg ? "chardarkbg" : "charlightbg")
                                 }
                                 style={{
-                                    width: `${charScale * 30}px`,
-                                    height: `${charScale * 30}px`,
+                                    width: `${charScale}px`,
                                 }}
                             >
                                 <Image src={`/c/${char}.png`} alt={char} fill />
