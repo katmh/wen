@@ -108,7 +108,7 @@ textarea {
 }
 
 .control {
-  margin: 1rem 0;
+  margin: 0.25rem 0;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -127,7 +127,7 @@ textarea {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  gap: 2px;
+  gap: 3px; /* may be overridden by linePad */
   overflow-x: scroll;
 }
 
@@ -146,7 +146,7 @@ textarea {
 
 .line {
   display: flex;
-  gap: 2px;
+  gap: 3px; /* may be overridden by charPad */
 }
 
 .linehorizontal {

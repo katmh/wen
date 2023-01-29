@@ -17,6 +17,8 @@ const Display = ({ text, charSet }: { text: string; charSet: Set<string> }) => {
     const [isVertical, setIsVertical] = useState(false);
     const [isDarkBg, setIsDarkBg] = useState(false);
     const [charScale, setCharScale] = useState(30);
+    const [linePad, setLinePad] = useState(3);
+    const [charPad, setCharPad] = useState(3);
 
     return (
         <section>
@@ -44,6 +46,22 @@ const Display = ({ text, charSet }: { text: string; charSet: Set<string> }) => {
                     state={charScale}
                     onChange={setCharScale}
                 />
+                <Control
+                    leftLabel="space between characters"
+                    inputType="range"
+                    min={0}
+                    max={40}
+                    state={charPad}
+                    onChange={setCharPad}
+                />
+                <Control
+                    leftLabel="space between lines"
+                    inputType="range"
+                    min={0}
+                    max={40}
+                    state={linePad}
+                    onChange={setLinePad}
+                />
             </div>
             <div
                 id="display"
@@ -51,6 +69,9 @@ const Display = ({ text, charSet }: { text: string; charSet: Set<string> }) => {
                     (isVertical ? "displayvertical " : "displayhorizontal ") +
                     (isDarkBg ? "displaydarkbg " : "displaylightbg ")
                 }
+                style={{
+                    gap: `${linePad}px`,
+                }}
             >
                 {tokens.map((line, i) => (
                     <div
@@ -61,6 +82,7 @@ const Display = ({ text, charSet }: { text: string; charSet: Set<string> }) => {
                         }
                         style={{
                             [isVertical ? "width" : "height"]: `${charScale}px`,
+                            gap: `${charPad}px`,
                         }}
                     >
                         {line.map((char, i) => (
