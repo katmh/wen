@@ -25,8 +25,8 @@ const Display = ({ text, charSet }: { text: string; charSet: Set<string> }) => {
             <h2>display</h2>
             <div id="controls">
                 <Control
-                    leftLabel="horizontal, left-to-right"
-                    rightLabel="vertical, right-to-left"
+                    leftLabel="horizontal, left to right"
+                    rightLabel="vertical, right to left"
                     inputType="checkbox"
                     state={isVertical}
                     onChange={setIsVertical}
@@ -47,7 +47,7 @@ const Display = ({ text, charSet }: { text: string; charSet: Set<string> }) => {
                     onChange={setCharScale}
                 />
                 <Control
-                    leftLabel="space between characters"
+                    leftLabel="character spacing"
                     inputType="range"
                     min={0}
                     max={40}
@@ -55,7 +55,7 @@ const Display = ({ text, charSet }: { text: string; charSet: Set<string> }) => {
                     onChange={setCharPad}
                 />
                 <Control
-                    leftLabel="space between lines"
+                    leftLabel="line spacing"
                     inputType="range"
                     min={0}
                     max={40}
