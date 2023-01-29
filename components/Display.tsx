@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useState } from "react";
 
 const Display = ({ text, charSet }: { text: string; charSet: Set<string> }) => {
     const tokens = [];
@@ -11,9 +12,12 @@ const Display = ({ text, charSet }: { text: string; charSet: Set<string> }) => {
         tokens.push(line.split(""));
     }
 
+    const [isVertical, setIsVertical] = useState(false);
+    const [isDarkBg, setIsDarkBg] = useState(false);
+
     const Line = ({ line }: { line: string[] }) => {
         return (
-            <div className="line">
+            <div className={`line ${isVertical ? "verticalline" : ""}`}>
                 {line.map((char, i) => (
                     <Char key={i} char={char} />
                 ))}
@@ -24,7 +28,7 @@ const Display = ({ text, charSet }: { text: string; charSet: Set<string> }) => {
     const Char = ({ char }: { char: string }) => {
         if (charSet.has(char)) {
             return (
-                <div className="char">
+                <div className={"char " + (isDarkBg ? "darkbgchar" : "")}>
                     <Image src={`/c/${char}.png`} alt={char} fill />
                 </div>
             );
@@ -33,11 +37,45 @@ const Display = ({ text, charSet }: { text: string; charSet: Set<string> }) => {
     };
 
     return (
-        <div id="display">
-            {tokens.map((line, i) => (
-                <Line key={i} line={line} />
-            ))}
-        </div>
+        <>
+            <div id="controls">
+                <span>horizontal + left-to-right</span>
+                <label className="switch">
+                    <input
+                        type="checkbox"
+                        checked={isVertical}
+                        onChange={(e) => setIsVertical(e.target.checked)}
+                    />
+                    <span className="slider round"></span>
+                </label>
+                <span>vertical + right-to-left</span>
+
+                <br />
+                <br />
+
+                <span>light background + dark text</span>
+                <label className="switch">
+                    <input
+                        type="checkbox"
+                        checked={isDarkBg}
+                        onChange={(e) => setIsDarkBg(e.target.checked)}
+                    />
+                    <span className="slider round"></span>
+                </label>
+                <span>dark background + light text</span>
+            </div>
+            <div
+                id="display"
+                className={
+                    (isVertical ? "verticaldisplay " : "") +
+                    (isDarkBg ? "darkbgdisplay " : "")
+                }
+            >
+                {tokens.map((line, i) => (
+                    <Line key={i} line={line} />
+                ))}
+            </div>
+        </>
     );
 };
 

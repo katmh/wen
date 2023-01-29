@@ -81,14 +81,26 @@ textarea {
   filter: invert(1);
 }
 
+#controls {
+  margin-top: 1rem;
+}
+
 #display {
-  margin-top: 3rem;
+  margin-top: 1rem;
   border: 1px solid brown;
   padding: 2rem;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 2px;
+}
+
+.verticaldisplay {
+  flex-direction: row-reverse;
+}
+
+.darkbgdisplay {
+  background: #333;
 }
 
 .line {
@@ -98,11 +110,85 @@ textarea {
   gap: 2px;
 }
 
+.verticalline {
+  flex-direction: column;
+  width: 30px;
+  height: 100%;
+}
+
 .char {
   width: 30px;
+  height: 30px;
   position: relative;
+}
+
+.darkbgchar {
+  filter: invert(1);
 }
 
 .char img {
   object-fit: contain;
+}
+
+/* Everything below is adapted from https://www.w3schools.com/howto/howto_css_switch.asp lol */
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .15s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .15s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }
