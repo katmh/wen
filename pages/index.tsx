@@ -43,6 +43,10 @@ export default function Home() {
                 <div id="inputanddisplay">
                     <section id="input">
                         <h2>input</h2>
+                        <p>
+                            write chinese text to see it displayed in my
+                            calligraphy, ransom note-style
+                        </p>
                         <textarea
                             value={text}
                             onChange={(e) => setText(e.target.value)}
