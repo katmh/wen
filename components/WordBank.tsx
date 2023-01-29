@@ -37,7 +37,7 @@ const WordBank = ({
             <h2>word bank</h2>
             <p>
                 not sure what to write? browse and search supported characters.
-                click a character to add it to your text
+                click a character to add it to the end of your text
             </p>
             <input
                 id="search"
@@ -70,7 +70,7 @@ const WordBank = ({
             ) : (
                 <>
                     <p className="label">
-                        showing all {characters.length} characters
+                        {`showing all ${characters.length} characters`}
                     </p>
                     <div id="searchresults">
                         {characters.map((char, i) => (
