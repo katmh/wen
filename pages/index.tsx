@@ -39,7 +39,6 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main>
-                <WordBank characters={characters} addChar={addChar} />
                 <div id="inputanddisplay">
                     <section id="input">
                         <h2>input</h2>
@@ -55,6 +54,7 @@ export default function Home() {
                     </section>
                     <Display text={text} charSet={charSet} />
                 </div>
+                <WordBank characters={characters} addChar={addChar} />
             </main>
         </>
     );
