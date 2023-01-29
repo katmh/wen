@@ -7,6 +7,12 @@
 
 h2 {
   font-family: system-ui;
+  color: #121212;
+}
+
+p, span, textarea {
+  line-height: 1.3;
+  color: #232323;
 }
 
 main {
@@ -15,7 +21,7 @@ main {
   margin: 2rem auto;
   display: grid;
   grid-template-columns: 1fr 2fr;
-  gap: 2rem;
+  gap: 3rem;
 }
 
 aside {
@@ -26,24 +32,27 @@ aside {
 
 input, textarea {
   padding: 0.8em 0.8em;
-  font-size: 1.25rem;
   border-radius: 0.75rem;
   outline: none;
   border: 1px solid #aaa;
   transition: 0.15s;
 }
 
-input:focus, textarea:focus {
+input[type="text"]:focus, textarea:focus {
   box-shadow: 0 0 5px #ddd;
 }
 
 textarea {
   resize: none;
   height: 10rem;
+  font-size: 1.25rem;
+  line-height: 1.5;
 }
 
 #search {
-  width: 100%;
+  width: 18rem;
+  max-width: 100%;
+  font-size: 1.05rem;
 }
 
 img {
@@ -97,22 +106,38 @@ textarea {
   margin-top: 1rem;
 }
 
+.control {
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.label {
+  font: 0.85rem/1.1 system-ui;
+  text-transform: uppercase; 
+  display: inline-block;
+}
+
 #display {
   margin-top: 1rem;
-  border: 1px solid brown;
   padding: 2rem;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 2px;
+  background: #f3e0bd;
+  overflow-x: scroll;
+  min-height: fit-content
 }
 
 .verticaldisplay {
   flex-direction: row-reverse;
 }
 
-.darkbgdisplay {
-  background: #333;
+#display.darkbgdisplay {
+  background: #423c36;
 }
 
 .line {
@@ -130,7 +155,7 @@ textarea {
 
 .char {
   width: 30px;
-  height: 30px;
+  aspect-ratio: 1;
   position: relative;
 }
 
@@ -140,6 +165,27 @@ textarea {
 
 .char img {
   object-fit: contain;
+}
+
+hr {
+  overflow: visible; /* For IE */
+  padding: 0;
+  border: none;
+  border-top: medium double #777;
+  color: #333;
+  text-align: center;
+  width: 97.5%;
+  margin: 1rem auto 0;
+}
+
+hr:after {
+  content: "§";
+  display: inline-block;
+  position: relative;
+  top: -0.7em;
+  font-size: 1.5em;
+  padding: 0 0.25em;
+  background: white;
 }
 
 /* Everything below is adapted from https://www.w3schools.com/howto/howto_css_switch.asp lol */
@@ -183,11 +229,11 @@ textarea {
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: #8b4134;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #8b4134;
 }
 
 input:checked + .slider:before {
@@ -198,9 +244,9 @@ input:checked + .slider:before {
 
 /* Rounded sliders */
 .slider.round {
-  border-radius: 34px;
+  border-radius: 4px;
 }
 
 .slider.round:before {
-  border-radius: 50%;
+  border-radius: 2px;
 }

@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { useState } from "react";
 
+import Control from "./Control";
+
 const Display = ({ text, charSet }: { text: string; charSet: Set<string> }) => {
     const tokens = [];
     for (const line of text.split("\n")) {
@@ -14,35 +16,34 @@ const Display = ({ text, charSet }: { text: string; charSet: Set<string> }) => {
 
     const [isVertical, setIsVertical] = useState(false);
     const [isDarkBg, setIsDarkBg] = useState(false);
+    const [charScale, setCharScale] = useState(1);
 
     return (
         <section>
             <h2>display</h2>
             <div id="controls">
-                <span>horizontal + left-to-right</span>
-                <label className="switch">
-                    <input
-                        type="checkbox"
-                        checked={isVertical}
-                        onChange={(e) => setIsVertical(e.target.checked)}
-                    />
-                    <span className="slider round"></span>
-                </label>
-                <span>vertical + right-to-left</span>
-
-                <br />
-                <br />
-
-                <span>light background + dark text</span>
-                <label className="switch">
-                    <input
-                        type="checkbox"
-                        checked={isDarkBg}
-                        onChange={(e) => setIsDarkBg(e.target.checked)}
-                    />
-                    <span className="slider round"></span>
-                </label>
-                <span>dark background + light text</span>
+                <Control
+                    leftLabel="horizontal, left-to-right"
+                    rightLabel="vertical, right-to-left"
+                    inputType="checkbox"
+                    state={isVertical}
+                    onChange={setIsVertical}
+                />
+                <Control
+                    leftLabel="light background"
+                    rightLabel="dark background"
+                    inputType="checkbox"
+                    state={isDarkBg}
+                    onChange={setIsDarkBg}
+                />
+                <Control
+                    leftLabel="text size"
+                    inputType="range"
+                    min={0.75}
+                    max={3}
+                    state={charScale}
+                    onChange={setCharScale}
+                />
             </div>
             <div
                 id="display"
@@ -62,6 +63,10 @@ const Display = ({ text, charSet }: { text: string; charSet: Set<string> }) => {
                                 className={
                                     "char " + (isDarkBg ? "darkbgchar" : "")
                                 }
+                                style={{
+                                    width: `${charScale * 30}px`,
+                                    height: `${charScale * 30}px`,
+                                }}
                             >
                                 <Image src={`/c/${char}.png`} alt={char} fill />
                             </div>

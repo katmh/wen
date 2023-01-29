@@ -44,8 +44,8 @@ export default function Home() {
                     <section id="input">
                         <h2>input</h2>
                         <p>
-                            write chinese text to see it displayed in my
-                            calligraphy, ransom note-style
+                            write chinese text here to see it displayed below in
+                            my calligraphy, ransom note-style
                         </p>
                         <textarea
                             value={text}
