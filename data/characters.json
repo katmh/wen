@@ -15,5 +15,49 @@
     "simplified": "梦",
     "glyph": "夢",
     "pinyin": "meng4"
+  },
+  {
+    "glyph": "財",
+    "simplified": "财",
+    "pinyin": "cai2"
+  },
+  {
+    "glyph": "南",
+    "pinyin": "nan2"
+  },
+  {
+    "glyph": "北",
+    "pinyin": "bei3"
+  },
+  {
+    "glyph": "西",
+    "pinyin": "xi1"
+  },
+  {
+    "glyph": "東",
+    "simplified": "东",
+    "pinyin": "dong1"
+  },
+  {
+    "glyph": "納",
+    "simplified": "纳",
+    "pinyin": "na4"
+  },
+  {
+    "glyph": "戶",
+    "simplified": "户",
+    "pinyin": "hu4"
+  },
+  {
+    "glyph": "冬",
+    "pinyin": "dong1"
+  },
+  {
+    "glyph": "秋",
+    "pinyin": "qiu1"
+  },
+  {
+    "glyph": "夏",
+    "pinyin": "xia4"
   }
 ]
