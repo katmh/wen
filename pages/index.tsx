@@ -1,12 +1,28 @@
 import Head from "next/head";
-import styles from "@/styles/Home.module.css";
+import { useState } from "react";
 
+import Display from "@/components/Display";
 import WordBank from "@/components/WordBank";
 
-import path from "path";
-import { readdir } from "node:fs/promises";
+import characters from "@/data/characters.json";
+import Character from "@/data/characters";
 
-export default function Home({ characters }: { characters: string[] }) {
+const charSet = new Set<string>();
+for (const char of characters as Character[]) {
+    charSet.add(char.glyph);
+    if (char.simplified) {
+        charSet.add(char.simplified);
+    }
+    if (char.traditional) {
+        charSet.add(char.traditional);
+    }
+}
+
+export default function Home() {
+    const [text, setText] = useState("");
+    const addChar = (char: string) => {
+        setText(text + char);
+    };
     return (
         <>
             <Head>
@@ -21,19 +37,20 @@ export default function Home({ characters }: { characters: string[] }) {
                 />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <main className={styles.main}>
-                <div></div>
-                <WordBank characters={characters} />
+            <main>
+                <WordBank characters={characters} addChar={addChar} />
+
+                <div id="inputanddisplay">
+                    <div id="input">
+                        <textarea
+                            value={text}
+                            onChange={(e) => setText(e.target.value)}
+                        ></textarea>
+                    </div>
+
+                    <Display text={text} charSet={charSet} />
+                </div>
             </main>
         </>
     );
-}
-
-export async function getStaticProps() {
-    const characters = await readdir(path.join(process.cwd(), "public/c"));
-    return {
-        props: {
-            characters,
-        },
-    };
 }
