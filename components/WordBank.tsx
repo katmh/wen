@@ -28,6 +28,7 @@ const WordBank = ({
     const fuse = new Fuse(characters, {
         keys: ["glyph", "simplified", "traditional", "pinyin"],
         threshold: 0.0, // Exact match only
+        ignoreLocation: true, // Match can occur anywhere in the data
     });
     const [query, setQuery] = useState("");
     const searchResults = fuse.search(query);
