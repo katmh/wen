@@ -19,7 +19,7 @@ for (const char of characters as Character[]) {
 }
 
 export default function Home() {
-    const [text, setText] = useState("");
+    const [text, setText] = useState("東西南北\n夢不息");
     const addChar = (char: string) => {
         setText(text + char);
     };

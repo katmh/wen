@@ -125,6 +125,7 @@ textarea {
   margin-top: 1rem;
   padding: 2rem;
   width: 100%;
+  min-height: 10rem;
   display: flex;
   flex-wrap: wrap;
   gap: 3px; /* may be overridden by linePad */

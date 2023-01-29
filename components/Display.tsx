@@ -15,7 +15,7 @@ const Display = ({ text, charSet }: { text: string; charSet: Set<string> }) => {
     }
 
     const [isVertical, setIsVertical] = useState(false);
-    const [isDarkBg, setIsDarkBg] = useState(false);
+    const [isDarkBg, setIsDarkBg] = useState(true);
     const [charScale, setCharScale] = useState(30);
     const [linePad, setLinePad] = useState(3);
     const [charPad, setCharPad] = useState(3);
